@@ -11,7 +11,7 @@ import {
 import { useCart } from '@/lib/context/cartProvider';
 import { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
-import CheckoutModal from './CheckoutModal';
+import CheckoutModal from './checkoutModal';
 
 export default function ShoppingCartModal({ isOpen, setIsOpen }) {
 	const { cartItems, updateCartItems } = useCart();
