@@ -1,10 +1,11 @@
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Hero() {
 	return (
 		<section className='relative w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-cover bg-center'>
-			<div className='absolute inset-0 bg-black opacity-10 z-10'></div>
+			<div className='absolute inset-0 bg-black opacity-50 z-10'></div>
 			<Image
 				src='/closet1.jpg'
 				alt='Background Image'
@@ -24,7 +25,9 @@ export default function Hero() {
 						</p>
 					</div>
 					<div className='space-x-4'>
-						<Button className='text-gray-200'>Shop Now</Button>
+						<Link href='#our-products'>
+							<Button className='text-gray-200'>Shop Now</Button>
+						</Link>
 						<Button className='text-gray-200' variant='outline'>
 							Learn More
 						</Button>
