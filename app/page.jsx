@@ -1,6 +1,6 @@
 import Footer from '@/components/footer';
 import Hero from '@/components/hero';
-import ItemCard from '@/components/itemCard';
+import ItemList from '@/components/itemList';
 import Navbar from '@/components/navbar';
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
 
 			<main className='flex-1'>
 				<Hero/>
-				<ItemCard/>
+				<ItemList/>
 			</main>
 			
 			<Footer />

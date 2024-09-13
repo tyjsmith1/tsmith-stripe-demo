@@ -8,10 +8,9 @@ export default function Hero() {
 			<Image
 				src='/closet1.jpg'
 				alt='Background Image'
-				layout='fill'
-				objectFit='cover'
-				quality={100}
-				className='z-0'
+				fill
+				priority
+				className='z-0 object-cover'
 			/>
 			<div className='container mx-auto px-4 md:px-6 flex justify-center items-center h-full relative z-10'>
 				<div className='flex flex-col items-center space-y-4 text-center'>
@@ -25,8 +24,10 @@ export default function Hero() {
 						</p>
 					</div>
 					<div className='space-x-4'>
-						<Button>Shop Now</Button>
-						<Button variant='outline'>Learn More</Button>
+						<Button className='text-gray-200'>Shop Now</Button>
+						<Button className='text-gray-200' variant='outline'>
+							Learn More
+						</Button>
 					</div>
 				</div>
 			</div>
