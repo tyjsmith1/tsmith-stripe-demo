@@ -1,12 +1,26 @@
 'use client';
 
-import { useStripe } from '@stripe/react-stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function PaymentResult() {
+const stripePromise = loadStripe(
+	process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+);
+
+function PaymentResultContent() {
 	const router = useRouter();
-	const stripe = useStripe();
+	const [stripe, setStripe] = useState(null);
+	const [message, setMessage] = useState('Processing your payment...');
+
+	useEffect(() => {
+		const initializeStripe = async () => {
+			const stripeInstance = await stripePromise;
+			setStripe(stripeInstance);
+		};
+		initializeStripe();
+	}, []);
 
 	useEffect(() => {
 		if (!stripe) {
@@ -24,23 +38,31 @@ export default function PaymentResult() {
 		stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
 			switch (paymentIntent.status) {
 				case 'succeeded':
-					console.log('Payment succeeded!');
+					setMessage('Payment succeeded!');
 					// Handle successful payment here
 					break;
 				case 'processing':
-					console.log('Your payment is processing.');
+					setMessage('Your payment is processing.');
 					break;
 				case 'requires_payment_method':
-					console.log(
+					setMessage(
 						'Your payment was not successful, please try again.'
 					);
 					break;
 				default:
-					console.log('Something went wrong.');
+					setMessage('Something went wrong.');
 					break;
 			}
 		});
 	}, [stripe]);
 
-	return <div>Processing your payment...</div>;
+	return <div>{message}</div>;
+}
+
+export default function PaymentResult() {
+	return (
+		<Elements stripe={stripePromise}>
+			<PaymentResultContent />
+		</Elements>
+	);
 }
