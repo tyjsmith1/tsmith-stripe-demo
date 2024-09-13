@@ -8,16 +8,14 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from '@/components/ui/dialog';
+import { useCart } from '@/lib/context/cartProvider';
 import { IoClose } from 'react-icons/io5';
 
-export default function ShoppingCartModal({
-	isOpen,
-	setIsOpen,
-	cartItems,
-	setCartItems,
-}) {
+export default function ShoppingCartModal({ isOpen, setIsOpen }) {
+	const { cartItems, updateCartItems } = useCart();
+
 	const removeFromCart = (id) => {
-		setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+		updateCartItems({ id, quantity: 0 }); // This will remove the item from the cart
 	};
 
 	const getTotalPrice = () => {

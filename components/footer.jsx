@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { IoShareSocial } from 'react-icons/io5';
 
 export default function Footer() {
 	return (
@@ -8,14 +10,22 @@ export default function Footer() {
 			</p>
 			<nav className='sm:ml-auto flex gap-4 sm:gap-6'>
 				<Link
-					className='text-xs hover:underline underline-offset-4'
-					href='#'>
-					Terms of Service
+					href='https://github.com/tyjsmith1/tsmith-stripe-demo'
+					target='_blank'
+					rel='noopener noreferrer'>
+					<FaGithub />
 				</Link>
 				<Link
-					className='text-xs hover:underline underline-offset-4'
-					href='#'>
-					Privacy
+					href='https://www.linkedin.com/in/tyler-smith-pm-se/'
+					target='_blank'
+					rel='noopener noreferrer'>
+					<FaLinkedin />
+				</Link>
+				<Link
+					href='https://www.tylerjsmith.dev/'
+					target='_blank'
+					rel='noopener noreferrer'>
+					<IoShareSocial />
 				</Link>
 			</nav>
 		</footer>
